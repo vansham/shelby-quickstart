@@ -1,6 +1,6 @@
 {
 	"name": "shelby-quickstart",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Simple samples to start serving with Shelby",
 	"main": "dist/index.js",
 	"type": "module",
@@ -34,7 +34,7 @@
 		"@aptos-labs/ts-sdk": "^5.1.1",
 		"@inquirer/core": "^9.0.0",
 		"@inquirer/prompts": "^7.8.4",
-		"@shelby-protocol/sdk": "^0.0.4",
+		"@shelby-protocol/sdk": "^0.0.7",
 		"chalk": "^5.6.2",
 		"filesize": "^11.0.13",
 		"ora": "^9.0.0",

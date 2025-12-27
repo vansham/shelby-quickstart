@@ -18,8 +18,8 @@ importers:
         specifier: ^7.8.4
         version: 7.8.6(@types/node@24.7.1)
       '@shelby-protocol/sdk':
-        specifier: ^0.0.4
-        version: 0.0.4(@aptos-labs/ts-sdk@5.1.1(got@11.8.6))
+        specifier: ^0.0.7
+        version: 0.0.7(@aptos-labs/ts-sdk@5.1.1(got@11.8.6))
       chalk:
         specifier: ^5.6.2
         version: 5.6.2
@@ -598,8 +598,8 @@ packages:
   '@shelby-protocol/reed-solomon@0.0.1':
     resolution: {integrity: sha512-Li+7Uj2LLe247YppsZDbZdnyhxGAmTBOx14QPvLNJzeq1lCmjeV7X2BtRzlvyElsvymQQI/WWcKIHu21ysCR9g==}
 
-  '@shelby-protocol/sdk@0.0.4':
-    resolution: {integrity: sha512-qSqwMro7e84DLkqQ3cp/JhMaxQ3mz1SquTV07yVS13bpeY7Yv2CC1R1YLZugR8Z0trctFg6suEcuHsp8olVRtw==}
+  '@shelby-protocol/sdk@0.0.7':
+    resolution: {integrity: sha512-abNMKc5ZAyuFgx+h25rG2D4SqCmVvxHA3hBh9vqdVqcwGwwpcdHxyUivlvnVP9jyiMtVsfJ4ZKTvjDDs1lAsPQ==}
     peerDependencies:
       '@aptos-labs/ts-sdk': ^2.0.1 || ^3.0.0 || ^4.0.0 || ^5.0.0
 
@@ -1143,6 +1143,10 @@ packages:
     resolution: {integrity: sha512-BZOr3nRQHOntUjTrH8+Lh54smKHoHyur8We1V8DSMVrl5A2malOOwuJRnKRDjSnkoeBh4at6BwEnb5I7Jl31wg==}
     engines: {node: '>=8'}
 
+  p-limit@7.1.1:
+    resolution: {integrity: sha512-i8PyM2JnsNChVSYWLr2BAjNoLi0BAYC+wecOnZnVV+YSNJkzP7cWmvI34dk0WArWfH9KwBHNoZI3P3MppImlIA==}
+    engines: {node: '>=20'}
+
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
 
@@ -1511,6 +1515,10 @@ packages:
     resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
     engines: {node: '>= 14.6'}
     hasBin: true
+
+  yocto-queue@1.2.2:
+    resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
+    engines: {node: '>=12.20'}
 
   yoctocolors-cjs@2.1.3:
     resolution: {integrity: sha512-U/PBtDf35ff0D8X8D0jfdzHYEPFxAI7jJlxZXwCSez5M3190m+QobIfh+sWDWSHMCWWJN2AWamkegn6vr6YBTw==}
@@ -1934,7 +1942,7 @@ snapshots:
 
   '@shelby-protocol/reed-solomon@0.0.1': {}
 
-  '@shelby-protocol/sdk@0.0.4(@aptos-labs/ts-sdk@5.1.1(got@11.8.6))':
+  '@shelby-protocol/sdk@0.0.7(@aptos-labs/ts-sdk@5.1.1(got@11.8.6))':
     dependencies:
       '@aptos-labs/ts-sdk': 5.1.1(got@11.8.6)
       '@shelby-protocol/clay-codes': 0.0.1
@@ -1942,6 +1950,7 @@ snapshots:
       graphql: 16.11.0
       graphql-request: 7.2.0(graphql@16.11.0)
       graphql-tag: 2.12.6(graphql@16.11.0)
+      p-limit: 7.1.1
       zod: 3.25.76
 
   '@sindresorhus/is@4.6.0': {}
@@ -2476,6 +2485,10 @@ snapshots:
 
   p-cancelable@2.1.1: {}
 
+  p-limit@7.1.1:
+    dependencies:
+      yocto-queue: 1.2.2
+
   package-json-from-dist@1.0.1: {}
 
   parse-ms@4.0.0: {}
@@ -2842,6 +2855,8 @@ snapshots:
   wrappy@1.0.2: {}
 
   yaml@2.8.1: {}
+
+  yocto-queue@1.2.2: {}
 
   yoctocolors-cjs@2.1.3: {}
 

@@ -93,7 +93,7 @@ async function main() {
 		/**
 		 * Upload the blob to Shelby
 		 */
-		const results = await client.upload({
+		await client.upload({
 			blobData: readFileSync(uploadFile),
 			signer,
 			blobName,
