@@ -54,6 +54,14 @@ async function main() {
 					`${chalk.cyan(truncate(SHELBY_ACCOUNT_ADDRESS as string))}:\n`,
 				),
 			)
+
+			// NEW: Table Header for better readability
+			console.log(
+				chalk.bold.underline("Blob Name".padEnd(30)),
+				chalk.bold.underline("Size".padEnd(15)),
+				chalk.bold.underline("Status / Expiry")
+			)
+
 			for (const blob of blobs) {
 				const expiryDate = new Date(blob.expirationMicros / 1000)
 				const now = new Date()
@@ -61,13 +69,14 @@ async function main() {
 				const expiry = expiryDate.toLocaleString()
 
 				const expiryText = isExpired
-					? `expired: ${chalk.red(expiry)}`
-					: `expiring: ${chalk.cyan(expiry)}`
+					? `${chalk.red("Expired:")} ${expiry}`
+					: `${chalk.green("Expiring:")} ${expiry}`
 
+				// NEW: Formatted row with padding
 				console.log(
-					`· ${chalk.cyan(blob.name)} — ${chalk.yellow(
-						filesize(blob.size),
-					)}, ${expiryText}`,
+					`${chalk.cyan(blob.name.padEnd(30))} ${chalk.yellow(
+						filesize(blob.size).toString().padEnd(15)
+					)} ${expiryText}`
 				)
 			}
 			console.log("\n")
@@ -89,7 +98,6 @@ async function main() {
 			return
 		}
 		if (e instanceof Error && e.message.includes("401")) {
-			// FIXME: Add link to the docs about obtaining an API key
 			console.error(
 				chalk.bold.redBright(
 					"Unauthorized (401). This means your API key is missing or invalid.",
