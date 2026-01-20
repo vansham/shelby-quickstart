@@ -55,7 +55,7 @@ async function main() {
 				),
 			)
 
-			// NEW: Table Header for better readability
+			// Table Header for better scannability
 			console.log(
 				chalk.bold.underline("Blob Name".padEnd(30)),
 				chalk.bold.underline("Size".padEnd(15)),
@@ -72,9 +72,9 @@ async function main() {
 					? `${chalk.red("Expired:")} ${expiry}`
 					: `${chalk.green("Expiring:")} ${expiry}`
 
-				// NEW: Formatted row with padding
+				// Using truncate here to fix the "Long blob names break column alignment" issue
 				console.log(
-					`${chalk.cyan(blob.name.padEnd(30))} ${chalk.yellow(
+					`${chalk.cyan(truncate(blob.name, 30).padEnd(30))} ${chalk.yellow(
 						filesize(blob.size).toString().padEnd(15)
 					)} ${expiryText}`
 				)
