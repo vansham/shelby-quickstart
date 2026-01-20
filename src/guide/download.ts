@@ -51,14 +51,21 @@ async function main() {
 		const outPath = join(process.cwd(), "downloads", blobName)
 		mkdirSync(dirname(outPath), { recursive: true })
 
+		// NEW: Fetch metadata first to show file size before downloading
+		spinner.text = chalk.bold.whiteBright("Fetching blob details...")
+		spinner.start()
+		
+		const metadata = await client.getBlobMetadata({ account, blobName })
+		const sizeLabel = metadata.contentLength ? ` (${filesize(metadata.contentLength)})` : ""
+
 		spinner.text = chalk.bold.whiteBright(
 			"Downloading",
-			`${chalk.cyan(truncate(accountStr))}/${chalk.cyan(blobName)}`,
+			`${chalk.cyan(truncate(accountStr))}/${chalk.cyan(blobName)}${chalk.yellow(sizeLabel)}`,
 			"from Shelby...",
 		)
-		spinner.start()
+		
 		/**
-		 * Rretrieve the blob from Shelby
+		 * Retrieve the blob from Shelby
 		 */
 		const blob = await client.download({ account, blobName })
 
@@ -72,7 +79,7 @@ async function main() {
 		/**
 		 * Pipe the blob's ReadableStream to our Node WriteStream
 		 */
-		await pipeline(Readable.fromWeb(webStream), createWriteStream(outPath))
+		await pipeline(Readable.fromWeb(webStream as any), createWriteStream(outPath))
 		spinner.stop()
 		console.log(
 			chalk.green("✔"),
@@ -83,10 +90,12 @@ async function main() {
 			),
 		)
 		console.log(chalk.bold.whiteBright("Saved to:"), chalk.cyan(outPath))
-		if (blob.contentLength) {
+		
+		// Use the already fetched metadata for final size display
+		if (metadata.contentLength) {
 			console.log(
 				chalk.bold.whiteBright("Blob size:"),
-				chalk.yellow(filesize(blob.contentLength)),
+				chalk.yellow(filesize(metadata.contentLength)),
 			)
 		}
 		console.log("\n")
